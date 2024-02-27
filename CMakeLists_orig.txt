@@ -5,11 +5,11 @@ set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-# recommend >=3.3.0
+# recommand >=3.3.0
 find_package(OpenCV REQUIRED)
-# recommend >=1.62.0
+# recommand >=1.62.0
 find_package(Boost REQUIRED COMPONENTS filesystem system)
-# recommend >=10.2.
+# recommand >=10.2.
 find_package(CUDA REQUIRED )
 
 include_directories(
@@ -17,8 +17,7 @@ ${OpenCV_INCLUDE_DIRS}
 ${Boost_INCLUDE_DIRS})
 include_directories(.)
 
-# Adjust CUDA_NVCC_FLAGS for NVIDIA Tesla P100-PCIE
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 --use_fast_math --maxrregcount=128 --ptxas-options=-v -std=c++11 --compiler-options -Wall -gencode arch=compute_60,code=sm_60)
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 --use_fast_math --maxrregcount=128 --ptxas-options=-v -std=c++11 --compiler-options -Wall -gencode arch=compute_75,code=sm_75)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     add_definitions(-std=c++11)
